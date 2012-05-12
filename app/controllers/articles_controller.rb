@@ -94,7 +94,7 @@ class ArticlesController < ApplicationController
   end
 
   def baton_pass
-    @diary.baton_pass
+    @diary.baton_pass!
     redirect_to diaries_path
   end
 
