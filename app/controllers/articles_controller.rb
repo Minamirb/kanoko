@@ -53,6 +53,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         member.articles << @article
+        member.baton_pass
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else
