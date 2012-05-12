@@ -58,7 +58,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to diary_article_path(@diary, @article),
+        format.html { redirect_to edit_diary_article_path(@diary, @article),
                       notice: '日記を次の人にまわしますか？' }
         format.json { render json: @article, status: :created, location: @article }
       else
@@ -75,9 +75,14 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to diary_article_path(@diary, @article),
-                      notice: '日記を次の人にまわしますか？' }
-        format.json { head :no_content }
+        if params[:next_member]
+          @diary.baton_pass!
+          format.html { redirect_to diaries_path }
+        else
+          format.html { redirect_to edit_diary_article_path(@diary, @article),
+            notice: '日記を次の人にまわしますか？' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @article.errors, status: :unprocessable_entity }

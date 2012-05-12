@@ -69,8 +69,15 @@
         </div>
       </div>
 
-      <div class="actions">
-        <%= f.submit %>
+      <div>
+        <div class="actions" style="float:left;">
+          <%= f.submit %>
+        </div>
+        <% if params[:action] == 'edit' %>
+        <div class="actions" style="float:left;">
+          <%= f.submit '次の人へ', :name => 'next_member' %>
+        </div>
+        <% end %>
       </div>
     <% end %>
   </div>
