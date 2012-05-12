@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
@@ -50,8 +51,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         member.articles << @article
-        member.baton_pass
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.html { redirect_to @article, notice: '日記を次の人にまわしますか？' }
         format.json { render json: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }
@@ -86,5 +86,11 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url }
       format.json { head :no_content }
     end
+  end
+
+  def baton_pass
+    member = Member.find(params[:member_id])
+    member.baton_pass
+    redirect_to diaries_path
   end
 end

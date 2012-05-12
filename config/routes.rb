@@ -3,8 +3,15 @@ Kanoko::Application.routes.draw do
   get "development/login" if ["development", "test"].include?(Rails.env)
 
   resources :articles
+
   resources :diaries do
     resources :articles
+  end
+
+  resources :members do
+    member do
+      put :baton_pass
+    end
   end
 
   match "/auth/:provider/callback" => "sessions#callback"
