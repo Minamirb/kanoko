@@ -83,4 +83,17 @@ class DiariesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # DELETE /diaries/1/withdraw
+  # DELETE /diaries/1/withdraw.json
+  def withdraw
+    @diary = @current_user.diaries.find(params[:id])
+    member = @diary.members.find_by_user_id(current_user.id)
+    member.destroy
+
+    respond_to do |format|
+      format.html { redirect_to diaries_url }
+      format.json { head :no_content }
+    end
+  end
 end

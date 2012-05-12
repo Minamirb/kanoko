@@ -3,6 +3,9 @@ Kanoko::Application.routes.draw do
   get "development/login" if ["development", "test"].include?(Rails.env)
 
   resources :diaries do
+    member do
+      delete :withdraw
+    end
     resources :articles do
       put :baton_pass
     end
