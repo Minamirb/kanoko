@@ -50,6 +50,9 @@
           <canvas id="canvas" width="370" height="130" style="border:1px solid #000000"></canvas>
           <%= f.hidden_field :picture %>
           <%= button_to_function "絵を消す", "javascript:void(0)", :id => "clear_picture" %>
+          <%= javascript_tag do %>
+            window.article_picture = '<%= j @article.picture %>';
+          <% end %>
         </div>
       </div>
 
