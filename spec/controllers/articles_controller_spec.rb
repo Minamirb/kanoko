@@ -156,19 +156,17 @@ describe ArticlesController do
     end
   end
 
-  # describe "DELETE destroy" do
-  #   it "destroys the requested article" do
-  #     article = Article.create! valid_attributes
-  #     expect {
-  #       delete :destroy, {:id => article.to_param}
-  #     }.to change(Article, :count).by(-1)
-  #   end
+  describe "DELETE destroy" do
+    it "destroys the requested article" do
+      expect {
+        delete :destroy, {diary_id: @diary.id, id: @article.to_param}
+      }.to change(Article, :count).by(-1)
+    end
 
-  #   it "redirects to the articles list" do
-  #     article = Article.create! valid_attributes
-  #     delete :destroy, {:id => article.to_param}
-  #     response.should redirect_to(articles_url)
-  #   end
-  # end
+    it "redirects to the articles list" do
+      delete :destroy, {diary_id: @diary.id, id: @article.to_param}
+      response.should redirect_to(diary_articles_url(@diary))
+    end
+  end
 
 end
