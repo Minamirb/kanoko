@@ -6,7 +6,13 @@ class SessionsController < ApplicationController
     user ||= User.find_by_provider_and_name(auth["provider"], auth["name"])
     user ||= User.create_with_omniauth(auth)
     session[:user_id] = user.id
-    redirect_to diaries_path, :notice => "Logged in"
+    if session[:url]
+      url = session[:url].clone
+      session.delete(:url)
+      redirect_to url
+    else
+      redirect_to diaries_path, :notice => "Logged in"
+    end
   end
 
   def destroy

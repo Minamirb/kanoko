@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class MembersController < ApplicationController
   before_filter :login_required
+  prepend_before_filter :memory_url, :only => :confirm
 
   def create
     @diary = current_user.diaries.find(params[:diary_id])
@@ -24,5 +25,10 @@ class MembersController < ApplicationController
   end
 
   def confirm
+  end
+
+  private
+  def memory_url
+    session[:url] = request.url
   end
 end
