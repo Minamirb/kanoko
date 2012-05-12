@@ -44,7 +44,7 @@ gem 'jquery-rails'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'twitter'
+gem 'rubytter'
 
 group :development, :test do
   gem 'rspec-rails'
