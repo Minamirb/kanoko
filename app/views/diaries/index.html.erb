@@ -30,6 +30,12 @@
           </tr>
         </table>
       <% end %>
+      【新メンバー招待】
+      <%= form_for([diary, diary.members.new]) do |f| %>
+        <%= f.select :provider, [:twitter, :twitter] %>
+        <%= f.text_field :account_screen_name, :size => 24 %>
+        <%= f.submit "招待する" %>
+      <% end %>
       <%= link_to 'この日記をやめる', withdraw_diary_path(diary), confirm: 'Are you sure?', method: :delete %>
     </div>
   </div>

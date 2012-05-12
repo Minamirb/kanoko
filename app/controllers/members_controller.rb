@@ -4,14 +4,23 @@ class MembersController < ApplicationController
 
   def create
     @diary = current_user.diaries.find(params[:diary_id])
-    member = @diary.members.new
     provider = params[:member][:provider]
-    name = params[:member][:account_name]
-    account = Account.find_by_provider_and_name(provider, name) || Account.create(provider: provider, name: name)
-    member.user = account.create_user
+    screen_name = params[:member][:account_screen_name]
+    account = Account.find_by_provider_and_screen_name(provider, screen_name)
+
+    member = if account
+               Member.find_by_user_id_and_diary_id(account.user.id, @diary.id)
+             else
+               @diary.members.new
+             end
+
+    unless account
+      member.create_user.accounts.create(provider: provider, screen_name: screen_name)
+    end
     member.confirm_hash = Digest::SHA1.hexdigest(Time.now.to_f.to_s)
     member.save
-    redirect_to diaries_path, :notice => name + "を招待しました"
+    member.invite_notice(current_user)
+    redirect_to diaries_path, :notice => screen_name + "を招待しました"
   end
 
   def confirm
