@@ -5,9 +5,16 @@
   <div class="diary">
     <div class="notebook">
       <div class="note_title">
-        <%= link_to diary.title, new_diary_article_path(diary) %>
+        <b><%= link_to diary.title, new_diary_article_path(diary) %></b>
       </div>
-      始めた日：2012/5/12<%#= diary.articles.fist.create_at.strftime("%Y年%m月%d日") %>
+      <table class="create_date">
+        <tr>
+          <th>始めた日</th>
+        </tr>
+        <tr>
+          <td><b><% if diary.articles.present? %><%= diary.articles.first.created_at.strftime("%Y年%m月%d日") %><% else %>(まだ誰も書いていません)<% end %></b></td>
+        </tr>
+      </table>
     </div>
     <div class="detail">
       【交換メンバー】
