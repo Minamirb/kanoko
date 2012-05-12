@@ -39,7 +39,9 @@ describe ArticlesController do
   # Article. As you add validations to Article, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      content: "AAA",
+    }
   end
   
   # This should return the minimal set of values that should be in the session
@@ -77,42 +79,42 @@ describe ArticlesController do
     end
   end
 
-  # describe "POST create" do
-  #   describe "with valid params" do
-  #     it "creates a new Article" do
-  #       expect {
-  #         post :create, {:article => valid_attributes}
-  #       }.to change(Article, :count).by(1)
-  #     end
+  describe "POST create" do
+    describe "with valid params" do
+      it "creates a new Article" do
+        expect {
+          post :create, {diary_id: @diary.id, article: valid_attributes}
+        }.to change(Article, :count).by(1)
+      end
 
-  #     it "assigns a newly created article as @article" do
-  #       post :create, {:article => valid_attributes}
-  #       assigns(:article).should be_a(Article)
-  #       assigns(:article).should be_persisted
-  #     end
+      it "assigns a newly created article as @article" do
+        post :create, {diary_id: @diary.id, article: valid_attributes}
+        assigns(:article).should be_a(Article)
+        assigns(:article).should be_persisted
+      end
 
-  #     it "redirects to the created article" do
-  #       post :create, {:article => valid_attributes}
-  #       response.should redirect_to(Article.last)
-  #     end
-  #   end
+      it "redirects to the created article" do
+        post :create, {diary_id: @diary.id, article: valid_attributes}
+        response.should redirect_to(diary_article_path(@diary, Article.last))
+      end
+    end
 
-  #   describe "with invalid params" do
-  #     it "assigns a newly created but unsaved article as @article" do
-  #       # Trigger the behavior that occurs when invalid params are submitted
-  #       Article.any_instance.stub(:save).and_return(false)
-  #       post :create, {:article => {}}
-  #       assigns(:article).should be_a_new(Article)
-  #     end
+    describe "with invalid params" do
+      it "assigns a newly created but unsaved article as @article" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Article.any_instance.stub(:save).and_return(false)
+        post :create, {diary_id: @diary.id, article: {}}
+        assigns(:article).should be_a_new(Article)
+      end
 
-  #     it "re-renders the 'new' template" do
-  #       # Trigger the behavior that occurs when invalid params are submitted
-  #       Article.any_instance.stub(:save).and_return(false)
-  #       post :create, {:article => {}}
-  #       response.should render_template("new")
-  #     end
-  #   end
-  # end
+      it "re-renders the 'new' template" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Article.any_instance.stub(:save).and_return(false)
+        post :create, {diary_id: @diary.id, article: {}}
+        response.should render_template("new")
+      end
+    end
+  end
 
   # describe "PUT update" do
   #   describe "with valid params" do
