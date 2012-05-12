@@ -1,12 +1,18 @@
-<% if prev_article = @last_article.prev %>
-  <%= link_to image_tag("tab_pink.png", id: "pre_tag"), new_diary_article_path(@diary, article_id: prev_article.to_param) %>
-<% else %>
-  <div id="blank_tag">&nbsp;</div>
-<% end %>
-<% if next_article = @last_article.next %>
-  <%= link_to image_tag("tab_pink2.png", id: "next_tag"), new_diary_article_path(@diary, article_id: next_article.to_param) %>
-<% end %>
-<%= link_to image_tag("tab_blue.png"), diaries_path, id: "back_tag" %>
+<div id="tag_area">
+  <div id="pre_tag">
+    <% if @last_article.present? && prev_article = @last_article.prev %>
+      <%= link_to image_tag("tab_pink.png"), new_diary_article_path(@diary, article_id: prev_article.to_param) %>
+    <% else %>
+      <div id="blank_tag">&nbsp;</div>
+    <% end %>
+  </div>
+  <div id="next_tag">
+    <% if @last_article.present? && next_article = @last_article.next %>
+      <%= link_to image_tag("tab_pink2.png"), new_diary_article_path(@diary, article_id: next_article.to_param) %>
+    <% end %>
+  </div>
+  <%= link_to image_tag("tab_blue.png"), diaries_path, id: "back_tag" %>
+</div>
 
 <div id="note_area">
   <div id="pre_content">

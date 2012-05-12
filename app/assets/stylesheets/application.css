@@ -6,20 +6,27 @@ body {
     font-size: 30px;
 }
 
-#pre_tag {
+#tag_area{
+    height: 48px;
+}
+
+#tag_area #pre_tag {
     margin: 0 0 -6px 15px;
+    float: left;
 }
 
-#next_tag {
-    margin: 0 0 -6px 5px;
+#tag_area #next_tag {
+    margin: 0 0 -6px 10px;
+    float: left;
 }
 
-#blank_tag {
-    width: 105px;
+#tag_area #blank_tag {
+    height: 48px;
+    width: 90px;
     display: inline-block;
 }
 
-#back_tag {
+#tag_area #back_tag {
     margin: 0 15px -6px 0;
     float: right;
 }
