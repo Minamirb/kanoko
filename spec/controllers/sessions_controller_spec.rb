@@ -11,7 +11,7 @@ describe SessionsController do
 
         it "should login" do
           get 'callback', :provider => "twitter"
-          response.should redirect_to(root_url)
+          response.should redirect_to(diaries_url)
         end
       end
 
@@ -32,7 +32,7 @@ describe SessionsController do
 
         it "should login" do
           get 'callback', :provider => "twitter"
-          response.should redirect_to(root_url)
+          response.should redirect_to(diaries_url)
         end
       end
     end
