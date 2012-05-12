@@ -47,6 +47,7 @@ class DiariesController < ApplicationController
 
     respond_to do |format|
       if @diary.save
+        @diary.members.first.update_attribute(:confirm, true) # FIXME
         format.html { redirect_to diaries_path, notice: 'Diary was successfully created.' }
         format.json { render json: @diary, status: :created, location: @diary }
       else
