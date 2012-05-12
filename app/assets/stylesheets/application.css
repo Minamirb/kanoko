@@ -10,6 +10,10 @@ body {
     margin: 0 0 -6px 15px;
 }
 
+#next_tag {
+    margin: 0 0 -6px 5px;
+}
+
 #back_tag {
     margin: 0 15px -6px 0;
     float: right;
