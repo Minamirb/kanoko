@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
-  belongs_to :member
   attr_accessible :content, :picture
+  belongs_to :user
+  belongs_to :diary
+  belongs_to :member
 end

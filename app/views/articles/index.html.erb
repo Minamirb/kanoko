@@ -12,14 +12,14 @@
 <% @articles.each do |article| %>
   <tr>
     <td><%= article.content %></td>
-    <td><%= article.member %></td>
-    <td><%= link_to 'Show', article %></td>
-    <td><%= link_to 'Edit', edit_article_path(article) %></td>
-    <td><%= link_to 'Destroy', article, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= article.member.user.name %></td>
+    <td><%= link_to 'Show', diary_article_path(@diary, article) %></td>
+    <td><%= link_to 'Edit', edit_diary_article_path(@diary, article) %></td>
+    <td><%= link_to 'Destroy', diary_article_path(@diary, article), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Article', new_article_path %>
+<%= link_to 'New Article', new_diary_article_path %>

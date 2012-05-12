@@ -1,8 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :diary do
-    title "MyString"
-    deliver false
+  factory :article do
+    content "MyText"
+    member_id 1
+    picture ""
   end
 end
