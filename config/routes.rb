@@ -5,14 +5,14 @@ Kanoko::Application.routes.draw do
   resources :articles
 
   resources :diaries do
-    resources :articles
-  end
-
-  resources :members do
-    member do
-      put :baton_pass
+    resources :articles do
+      member do
+        put :baton_pass
+      end
     end
   end
+
+  resources :members
 
   match "/auth/:provider/callback" => "sessions#callback"
   match "/logout" => "sessions#destroy", :as => :logout

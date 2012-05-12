@@ -26,7 +26,8 @@ class ArticlesController < ApplicationController
   # GET /articles/new.json
   def new
     @article = Article.new
-    @member = Member.find(params[:member_id])
+    @diary = Diary.find(params[:diary_id])
+    @member = Member.find_by_user_id_and_diary_id(current_user.id, @diary.id)
     @last_article = @member.prev_member.articles.order('updated_at').last
 
     respond_to do |format|
@@ -38,7 +39,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
-    @member = Member.find(params[:member_id])
+    @diary = Diary.find(params[:diary_id])
+    @member = Member.find_by_user_id_and_diary_id(current_user.id, @diary.id)
     @last_article = @member.prev_member.articles.order('updated_at').last
   end
 
@@ -46,7 +48,8 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(params[:article])
-    member = Member.find(params[:member_id])
+    diary = Diary.find(params[:diary_id])
+    member = Member.find_by_user_id_and_diary_id(current_user.id, diary.id)
 
     respond_to do |format|
       if @article.save

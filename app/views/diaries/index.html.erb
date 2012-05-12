@@ -1,5 +1,5 @@
 <h1><%= current_user.name %>の日記一覧</h1>
-<%= current_user.to_yaml %>
+
 <table>
 <% @diaries.each do |diary| %>
 <% member = diary.members.find_by_user_id(current_user.id) %>
@@ -10,7 +10,7 @@
       <%= member.baton == user.id ? '○' : '　' %><%= user.name %><br />
       <% end %>
     </td>
-    <td><%= link_to '日記を見る', new_member_articles_path(member) %></td>
+    <td><%= link_to '日記を見る', new_diary_article_path(diary) %></td>
     <td><%= link_to 'メンバー追加', edit_diary_path(diary) %></td>
     <td><%= link_to '日記を止める', diary, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

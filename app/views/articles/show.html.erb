@@ -5,5 +5,5 @@
   <%= @article.content %>
 </p>
 
-<%= link_to '修正する', edit_member_article_path(@article.member, @article) %> |
-<%= link_to '次の人へ', baton_pass_member_article_path(@article.member, @article), method: :put %>
+<%= link_to '修正する', edit_diary_article_path(@article.member.diary, @article) %> |
+<%= link_to '次の人へ', '#', method: :put %>
