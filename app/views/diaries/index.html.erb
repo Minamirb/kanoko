@@ -5,7 +5,11 @@
   <div class="diary">
     <div class="notebook">
       <div class="note_title">
-        <b><%= link_to diary.title, new_diary_article_path(diary) %></b>
+        <% if diary.new_article_user?(current_user) %>
+          <b><%= link_to diary.title, edit_diary_article_path(diary, diary.latest_article.id) %></b>
+        <% else %>
+          <b><%= link_to diary.title, new_diary_article_path(diary) %></b>
+        <% end %>
       </div>
       <table class="create_date">
         <tr>

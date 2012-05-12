@@ -4,6 +4,16 @@ class Diary < ActiveRecord::Base
   has_many :users, through: :members
   has_many :articles
 
+  def latest_article
+    articles.order("created_at DESC").first
+  end
+
+  def new_article_user?(user)
+    if latest_article.present?
+      latest_article.user_id == user.id
+    end
+  end
+
   def next_baton_owner
     sorted_members = members.sort { |m, n| m.sort <=> n.sort }
     i = sorted_members.index { |m| m.user_id == baton }
