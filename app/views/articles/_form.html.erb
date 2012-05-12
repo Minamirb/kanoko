@@ -1,4 +1,6 @@
-<%= image_tag "tab_pink.png", id: "pre_tag" %>
+<% if prev_article = @last_article.prev %>
+  <%= link_to image_tag("tab_pink.png", id: "pre_tag"), new_diary_article_path(@diary, article_id: prev_article.to_param) %>
+<% end %>
 <%= link_to image_tag("tab_blue.png"), diaries_path, id: "back_tag" %>
 
 <div id="note_area">
