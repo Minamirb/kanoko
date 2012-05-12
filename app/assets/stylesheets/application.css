@@ -1,4 +1,40 @@
 body {
-    background: url(c1.png);
-    color: white;
+    background: url(back.png);
+}
+
+#pre_tag {
+    margin: 0 0 -6px 0;
+}
+
+#back_tag {
+    margin: 0 0 -6px 0;
+    float: right;
+}
+
+#note_area {
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    height: 600px;
+}
+
+#note_area #ring_area {
+    float: left;
+    background: url(ring.png);
+    height: 600px;
+    width: 90px;
+}
+
+#note_area #pre_content {
+    float: left;
+    height: 600px;
+    width: 470px;
+    padding-left: 25px;
+}
+
+#note_area #new_content {
+    float: right;
+    height: 600px;
+    width: 480px;
+    padding-top: 20px;
 }

@@ -1,25 +1,45 @@
-<%= form_for(@article) do |f| %>
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+<%= image_tag "tab_pink.png", id: "pre_tag" %>
+<%= link_to image_tag("tab_blue.png"), articles_path, id: "back_tag" %>
 
-      <ul>
-      <% @article.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div id="note_area">
+  <div id="pre_content">
+    <p>
+      <b>×月○日</b>
+      <b>さとみっちー</b>
+    </p>
+    <p>
+      今日は、学校の友達とイタリア料理を食べに行きました。コースを頼んだので、前菜からめっちゃテンションあがって、写真もいっぱいついーとしたし、料理もおいしかったし、幸せなディナーでした♡
+    </p>
+  </div>
+
+  <div id="ring_area">
+    &nbsp;
+  </div>
+
+  <div id="new_content">
+    <%= form_for(@article) do |f| %>
+      <% if @article.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+          <ul>
+          <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+      <div class="field">
+        わたしの日記<br />
+        <%= f.text_area :content, :size => "50x25" %>
+      </div>
+      <div class="field">
+        <%#= f.text_field :member %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :member %><br />
-    <%= f.text_field :member %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
