@@ -26,12 +26,13 @@ describe ArticlesController do
 
     @diary = FactoryGirl.build(:diary)
     @diary.users << @user
-    @diary.save
+    @diary.save!
 
     @article = FactoryGirl.build(:article)
-    # @article.member = @diary.member
-    # p @article
-    # puts @article
+    @article.user = @user
+    @article.diary = @diary
+    @article.member = @diary.members.find_by_user_id(@user.id)
+    @article.save!
   end
 
   # This should return the minimal set of attributes required to create a valid
@@ -50,17 +51,15 @@ describe ArticlesController do
 
   describe "GET index" do
     it "assigns all articles as @articles" do
-      article = Article.create! valid_attributes
-      get :index, {}
-      assigns(:articles).should eq([article])
+      get :index, {diary_id: @diary.id}
+      assigns(:articles).should eq([@article])
     end
   end
 
   describe "GET show" do
     it "assigns the requested article as @article" do
-      article = Article.create! valid_attributes
-      get :show, {:id => article.to_param}
-      assigns(:article).should eq(article)
+      get :show, {diary_id: @diary.id, id: @article.to_param}
+      assigns(:article).should eq(@article)
     end
   end
 
