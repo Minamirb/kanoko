@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="detail">
-      【交換メンバー】
+      【日記交換するメンバー】
       <br />
       <% diary.users.each do |user| %>
         <table>
@@ -30,8 +30,8 @@
           </tr>
         </table>
       <% end %>
-      【新メンバー招待】
       <%= form_for([diary, diary.members.new]) do |f| %>
+        [新メンバー招待]
         <%= f.select :provider, [:twitter, :twitter] %>
         <%= f.text_field :account_screen_name, :size => 24 %>
         <%= f.submit "招待する" %>
