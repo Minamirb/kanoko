@@ -9,9 +9,8 @@
 <body>
 
   <div id="header">
-    <div id="logo">
-      <%= image_tag "title.png", :size => "200x50" %>
-    </div>
+    <%= image_tag "title.png", :size => "200x50" %>
+    <%= current_user.name %>'s
   </div>
 
 <%= yield %>
