@@ -44,10 +44,10 @@
       <div>
         <%= f.label :"絵を書く" %>
         <div>
-          <canvas id="canvas"></canvas>
+          <canvas id="canvas" width="370" height="130" style="border:1px solid #000000"></canvas>
           <%= f.hidden_field :picture %>
+          <%= button_to_function "絵を消す", "javascript:void(0)", :id => "clear_picture" %>
         </div>
-        <%= button_to_function "絵を消す", "javascript:void(0)", :id => "clear_picture" %>
       </div>
 
       <div class="actions">
