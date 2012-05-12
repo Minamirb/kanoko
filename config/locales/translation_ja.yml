@@ -1,14 +1,14 @@
 ja:
   activerecord:
     models:
-      article: 記事  #g
-      diary: 日記  #g
+      article: ページ
+      diary: 日記
 
     attributes:
       article:
-        content: 内容  #g
-        member: :activerecord.models.member  #g
+        content: 内容
+        member: メンバー
 
       diary:
-        deliver: 渡しなさい  #g
-        title: タイトル  #g
+        deliver: 回覧
+        title: タイトル
