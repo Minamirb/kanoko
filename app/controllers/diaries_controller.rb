@@ -2,7 +2,9 @@ class DiariesController < ApplicationController
   # GET /diaries
   # GET /diaries.json
   def index
-    @diaries = Diary.all
+    @current_user = User.first
+
+    @diaries = @current_user.members.map(&:diary)
 
     respond_to do |format|
       format.html # index.html.erb

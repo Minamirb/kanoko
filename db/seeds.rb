@@ -10,13 +10,16 @@
 d1 = Diary.create(title: 'だいありー１')
 d2 = Diary.create(title: 'ダイアリー２')
 
-m1 = Member.create
-m2 = Member.create
+tanaka = User.create(name: '田中')
+yamada = User.create(name: '山田')
+kato   = User.create(name: '加藤')
+suzuki = User.create(name: '鈴木')
 
-m1.diary = d1
-m1.save
-m2.diary = d2
-m2.save
+d1.users << tanaka
+d1.users << yamada
+d2.users << kato
+d2.users << yamada
+d2.users << suzuki
 
 a1 = Article.create(content: '日記の内容' * 10)
 a1.member = m1

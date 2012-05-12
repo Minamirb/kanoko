@@ -1,12 +1,11 @@
 <h1>日記の一覧</h1>
 
-<% current_user_id = 1 %>
 <table>
 <% @diaries.each do |diary| %>
-<%= member_id = diary.members.find_by_user_id(current_user_id) %>
+<% member = diary.members.find_by_user_id(@current_user.id) %>
   <tr>
     <td><%= diary.title %></td>
-    <td><%= link_to '日記を見る', new_member_articles_path(2) %></td>
+    <td><%= link_to '日記を見る', new_member_articles_path(member.id) %></td>
     <td><%= link_to 'メンバー追加', edit_diary_path(diary) %></td>
     <td><%= link_to '日記を止める', diary, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

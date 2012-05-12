@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :members
+  has_many :diaries, through: :members
   attr_accessible :name, :provider, :screen_name, :uid
 
   has_many :accounts
