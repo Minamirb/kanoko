@@ -22,4 +22,9 @@ class User < ActiveRecord::Base
     account = Account.find_by_provider_and_uid(provider, uid)
     account.user unless account.nil?
   end
+
+  def self.find_by_provider_and_name(provider, name)
+    account = Account.find_by_provider_and_name(provider, name)
+    account.user unless account.nil?
+  end
 end
