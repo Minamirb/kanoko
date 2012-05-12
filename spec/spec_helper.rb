@@ -37,10 +37,10 @@ omniauth_options = {
   "provider"    => "twitter",
   "uid"         => "3333",
   "info"        => {
-    :name       => "Pumpkin King",
-    :nickname   => "Jack",
-    :urls       => { :Twitter => "localhost:3000/#twitter" },
+    'name'      => "Pumpkin King",
+    'nickname'  => "Jack",
+    'urls'      => { :Twitter => "localhost:3000/#twitter" },
   },
-  "credentials" => { :token => "fafiafea988f3jr38r93u9r" },
+  "credentials" => { 'token' => "fafiafea988f3jr38r93u9r" },
 }
 OmniAuth.config.add_mock(:twitter, omniauth_options)
