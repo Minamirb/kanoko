@@ -1,4 +1,4 @@
-<%= link_to '新しい日記', new_diary_path %>
+<%= link_to '新しい交換日記を始める', new_diary_path, id: "add_diary_button" %>
 
 <% @diaries.each do |diary| %>
   <% member = diary.members.find_by_user_id(current_user.id) %>
