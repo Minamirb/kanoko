@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :user do
     name "MyString"
+    after_create {|u| FactoryGirl.create(:diary, :users => [u]) }
   end
 end

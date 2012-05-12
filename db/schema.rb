@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(:version => 20120512175439) do
     t.integer  "user_id"
     t.integer  "diary_id"
     t.integer  "sort"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "confirm",      :default => false
+    t.string   "confirm_hash"
   end
 
   add_index "members", ["diary_id"], :name => "index_members_on_diary_id"
