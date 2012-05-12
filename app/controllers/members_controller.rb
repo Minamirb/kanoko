@@ -25,6 +25,14 @@ class MembersController < ApplicationController
   end
 
   def confirm
+    @diary = Diary.find(params[:diary_id])
+    @member = Member.find_by_user_id_and_diary_id(current_user.id, @diary.id)
+    if request.put?
+      @member.confirm = true
+      @member.confirm_hash = nil
+      @member.save!
+      redirect_to diaries_path, :notice => "#{@diary.title} に参加しました"
+    end
   end
 
   private

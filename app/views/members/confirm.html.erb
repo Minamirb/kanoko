@@ -1,2 +1,10 @@
-<h1>Members#confirm</h1>
-<p>Find me in app/views/members/confirm.html.erb</p>
+<%= @diary.title %> に参加しますか？
+<br>
+【交換メンバー】<br>
+<% @diary.members.each do |member| %>
+  <%= member.user.try(:name) %>
+<% end %>
+
+<%= form_for(@member, :url => diary_member_confirm_path(@diary, @member)) do |f| %>
+  <%= f.submit "参加する" %>
+<% end %>

@@ -12,6 +12,8 @@ Kanoko::Application.routes.draw do
     end
     resources :members, :only => [:create] do
       get :confirm
+      put :confirm
+      delete :confirm
     end
   end
 
