@@ -8,11 +8,12 @@ class User < ActiveRecord::Base
   def self.create_with_omniauth(auth)
     create! do |user|
       attrs = {
-        provider: auth['provider'],
-        uid:      auth['uid'],
-        name:     (auth['info']['name'] rescue ''),
-        secret:   (auth['credentials']['secret'] rescue ''),
-        token:    (auth['credentials']['token'] rescue ''),
+        provider:    auth['provider'],
+        uid:         auth['uid'],
+        name:        (auth['info']['name'] rescue ''),
+        screen_name: (auth['info']['nickname'] rescue ''),
+        secret:      (auth['credentials']['secret'] rescue ''),
+        token:       (auth['credentials']['token'] rescue ''),
       }
       user.accounts.build(attrs)
       user.name = auth['info']['nickname']
