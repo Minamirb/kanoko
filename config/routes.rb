@@ -1,4 +1,6 @@
 Kanoko::Application.routes.draw do
+  resources :articles
+
   resources :diaries
 
   # The priority is based upon order of creation:
