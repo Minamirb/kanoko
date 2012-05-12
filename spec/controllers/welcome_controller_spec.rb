@@ -9,7 +9,7 @@ describe WelcomeController do
       it "returns http success" do
         get 'index'
         response.should be_success
-        response.body.should =~ /Log in/
+        response.body.should =~ /login/
       end
     end
 
@@ -23,7 +23,7 @@ describe WelcomeController do
       it "returns http success" do
         get 'index'
         response.should be_success
-        response.body.should =~ /Log out/
+        response.body.should_not =~ /login/
       end
     end
   end

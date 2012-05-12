@@ -44,3 +44,16 @@ omniauth_options = {
   "credentials" => { 'token' => "fafiafea988f3jr38r93u9r" },
 }
 OmniAuth.config.add_mock(:twitter, omniauth_options)
+
+def create_default_twitter_user
+  twitter_user = OmniAuth.config.mock_auth[:twitter]
+  user = FactoryGirl.create(:user)
+  attrs = {
+    user_id:  user.id,
+    provider: twitter_user["provider"],
+    uid:      twitter_user["uid"],
+    name:     twitter_user["info"]["name"],
+  }
+  account = FactoryGirl.create(:account, attrs)
+  user
+end

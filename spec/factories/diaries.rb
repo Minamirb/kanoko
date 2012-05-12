@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :diary do
+    title "MyString"
+    deliver false
   end
 end

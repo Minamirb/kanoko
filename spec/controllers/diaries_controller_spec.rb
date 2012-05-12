@@ -19,12 +19,23 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe DiariesController do
+  before(:each) do
+    @user = create_default_twitter_user
+    session[:user_id] = @user.id
+
+    @diary = FactoryGirl.build(:diary)
+    @diary.users << @user
+    @diary.save
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Diary. As you add validations to Diary, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      title:   "another diary",
+      deliver: true,
+    }
   end
   
   # This should return the minimal set of values that should be in the session
@@ -36,32 +47,29 @@ describe DiariesController do
 
   describe "GET index" do
     it "assigns all diaries as @diaries" do
-      diary = Diary.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:diaries).should eq([diary])
+      get :index #, {}, valid_session
+      assigns(:diaries).should eq([@diary])
     end
   end
 
   describe "GET show" do
     it "assigns the requested diary as @diary" do
-      diary = Diary.create! valid_attributes
-      get :show, {:id => diary.to_param}, valid_session
-      assigns(:diary).should eq(diary)
+      get :show, {:id => @diary.to_param}
+      assigns(:diary).should eq(@diary)
     end
   end
 
   describe "GET new" do
     it "assigns a new diary as @diary" do
-      get :new, {}, valid_session
+      get :new
       assigns(:diary).should be_a_new(Diary)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested diary as @diary" do
-      diary = Diary.create! valid_attributes
-      get :edit, {:id => diary.to_param}, valid_session
-      assigns(:diary).should eq(diary)
+      get :edit, {:id => @diary.to_param}
+      assigns(:diary).should eq(@diary)
     end
   end
 
@@ -69,18 +77,18 @@ describe DiariesController do
     describe "with valid params" do
       it "creates a new Diary" do
         expect {
-          post :create, {:diary => valid_attributes}, valid_session
+          post :create, {:diary => valid_attributes}
         }.to change(Diary, :count).by(1)
       end
 
       it "assigns a newly created diary as @diary" do
-        post :create, {:diary => valid_attributes}, valid_session
+        post :create, {:diary => valid_attributes}
         assigns(:diary).should be_a(Diary)
         assigns(:diary).should be_persisted
       end
 
       it "redirects to the created diary" do
-        post :create, {:diary => valid_attributes}, valid_session
+        post :create, {:diary => valid_attributes}
         response.should redirect_to(Diary.last)
       end
     end
@@ -89,14 +97,14 @@ describe DiariesController do
       it "assigns a newly created but unsaved diary as @diary" do
         # Trigger the behavior that occurs when invalid params are submitted
         Diary.any_instance.stub(:save).and_return(false)
-        post :create, {:diary => {}}, valid_session
+        post :create, {:diary => {}}
         assigns(:diary).should be_a_new(Diary)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Diary.any_instance.stub(:save).and_return(false)
-        post :create, {:diary => {}}, valid_session
+        post :create, {:diary => {}}
         response.should render_template("new")
       end
     end
@@ -105,42 +113,37 @@ describe DiariesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested diary" do
-        diary = Diary.create! valid_attributes
         # Assuming there are no other diaries in the database, this
         # specifies that the Diary created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Diary.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => diary.to_param, :diary => {'these' => 'params'}}, valid_session
+        put :update, {:id => @diary.to_param, :diary => {'these' => 'params'}}
       end
 
       it "assigns the requested diary as @diary" do
-        diary = Diary.create! valid_attributes
-        put :update, {:id => diary.to_param, :diary => valid_attributes}, valid_session
-        assigns(:diary).should eq(diary)
+        put :update, {:id => @diary.to_param, :diary => valid_attributes}
+        assigns(:diary).should eq(@diary)
       end
 
       it "redirects to the diary" do
-        diary = Diary.create! valid_attributes
-        put :update, {:id => diary.to_param, :diary => valid_attributes}, valid_session
-        response.should redirect_to(diary)
+        put :update, {:id => @diary.to_param, :diary => valid_attributes}
+        response.should redirect_to(@diary)
       end
     end
 
     describe "with invalid params" do
       it "assigns the diary as @diary" do
-        diary = Diary.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Diary.any_instance.stub(:save).and_return(false)
-        put :update, {:id => diary.to_param, :diary => {}}, valid_session
-        assigns(:diary).should eq(diary)
+        put :update, {:id => @diary.to_param, :diary => {}}
+        assigns(:diary).should eq(@diary)
       end
 
       it "re-renders the 'edit' template" do
-        diary = Diary.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Diary.any_instance.stub(:save).and_return(false)
-        put :update, {:id => diary.to_param, :diary => {}}, valid_session
+        put :update, {:id => @diary.to_param, :diary => {}}
         response.should render_template("edit")
       end
     end
@@ -148,15 +151,13 @@ describe DiariesController do
 
   describe "DELETE destroy" do
     it "destroys the requested diary" do
-      diary = Diary.create! valid_attributes
       expect {
-        delete :destroy, {:id => diary.to_param}, valid_session
+        delete :destroy, {:id => @diary.to_param}
       }.to change(Diary, :count).by(-1)
     end
 
     it "redirects to the diaries list" do
-      diary = Diary.create! valid_attributes
-      delete :destroy, {:id => diary.to_param}, valid_session
+      delete :destroy, {:id => @diary.to_param}
       response.should redirect_to(diaries_url)
     end
   end
