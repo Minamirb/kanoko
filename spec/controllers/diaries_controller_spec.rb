@@ -89,7 +89,7 @@ describe DiariesController do
 
       it "redirects to the created diary" do
         post :create, {:diary => valid_attributes}
-        response.should redirect_to(Diary.last)
+        response.should redirect_to(diaries_url)
       end
     end
 
@@ -128,7 +128,7 @@ describe DiariesController do
 
       it "redirects to the diary" do
         put :update, {:id => @diary.to_param, :diary => valid_attributes}
-        response.should redirect_to(@diary)
+        response.should redirect_to(diaries_url)
       end
     end
 
@@ -158,6 +158,19 @@ describe DiariesController do
 
     it "redirects to the diaries list" do
       delete :destroy, {:id => @diary.to_param}
+      response.should redirect_to(diaries_url)
+    end
+  end
+
+  describe "DELETE withdraw" do
+    it "withdraw from the diary" do
+      expect {
+        delete :withdraw, {:id => @diary.to_param}
+      }.to change(Member, :count).by(-1)
+    end
+
+    it "redirects to the diaries list" do
+      delete :withdraw, {:id => @diary.to_param}
       response.should redirect_to(diaries_url)
     end
   end
