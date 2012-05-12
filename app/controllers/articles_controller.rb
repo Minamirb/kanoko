@@ -53,7 +53,8 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to diary_article_path(@article), notice: '日記を次の人にまわしますか？' }
+        format.html { redirect_to diary_article_path(@diary, @article),
+                      notice: '日記を次の人にまわしますか？' }
         format.json { render json: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }
@@ -69,7 +70,8 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to diary_article_path(@article), notice: '日記を次の人にまわしますか？' }
+        format.html { redirect_to diary_article_path(@diary, @article),
+                      notice: '日記を次の人にまわしますか？' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

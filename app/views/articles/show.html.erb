@@ -6,4 +6,4 @@
 </p>
 
 <%= link_to '修正する', edit_diary_article_path(@article.member.diary, @article) %> |
-<%= link_to '次の人へ', baton_pass_diary_article_path(@article), method: :put %>
+<%= link_to '次の人へ', baton_pass_diary_article_path(@diary, @article), method: :put %>

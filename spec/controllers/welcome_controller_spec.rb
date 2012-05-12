@@ -9,7 +9,8 @@ describe WelcomeController do
       it "returns http success" do
         get 'index'
         response.should be_success
-        response.body.should =~ /login/
+        # response.body.should =~ /login/
+        response.body.should =~ %r{/auth/twitter}
       end
     end
 
@@ -23,7 +24,8 @@ describe WelcomeController do
       it "returns http success" do
         get 'index'
         response.should be_success
-        response.body.should_not =~ /login/
+        # response.body.should_not =~ /login/
+        response.body.should_not =~ %r{/auth/twitter}
       end
     end
   end
