@@ -8,6 +8,7 @@ Kanoko::Application.routes.draw do
     end
     resources :articles do
       put :baton_pass
+      get :picture
     end
   end
 

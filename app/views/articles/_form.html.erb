@@ -11,6 +11,9 @@
       <p>
         <%= @last_article.content %>
       </p>
+      <p>
+        <%= image_tag diary_article_picture_path(@diary, @last_article) %>
+      </p>
     <% end %>
   </div>
 

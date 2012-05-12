@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @article = @diary.articles.find(params[:id])
+    @last_article = @diary.articles.order('updated_at')[-2]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -95,5 +96,11 @@ class ArticlesController < ApplicationController
   def baton_pass
     @diary.baton_pass
     redirect_to diaries_path
+  end
+
+  def picture
+    @article = Article.find(params[:article_id])
+    send_data(Base64.decode64(@article.picture.sub('data:image/png;base64,', '')),
+              type: 'image/png')
   end
 end

@@ -1,9 +1,42 @@
-<p id="notice"><%= notice %></p>
+<%= image_tag "tab_pink.png", id: "pre_tag" %>
+<%= link_to image_tag("tab_blue.png"), diaries_path, id: "back_tag" %>
 
-<p>
-  <b>Content:</b>
-  <%= @article.content %>
-</p>
+<div id="note_area">
+  <div id="pre_content">
+    <% if @last_article %>
+      <p>
+        <b><%= @last_article.updated_at %></b>
+        <b><%= @last_article.member.user.name %></b>
+      </p>
+      <p>
+        <%= @last_article.content %>
+      </p>
+      <p>
+        <%= image_tag diary_article_picture_path(@diary, @last_article) %>
+      </p>
+    <% end %>
+  </div>
 
-<%= link_to '修正する', edit_diary_article_path(@article.member.diary, @article) %> |
-<%= link_to '次の人へ', baton_pass_diary_article_path(@diary, @article), method: :put %>
+  <div id="ring_area">
+    &nbsp;
+  </div>
+
+  <div id="new_content">
+      <div class="field">
+        わたしの日記<br />
+        <%= @article.content %>
+      </div>
+
+      <div>
+        <div>
+          <%= image_tag diary_article_picture_path(@diary, @article) %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= button_to '修正する', edit_diary_article_path(@article.member.diary, @article), method: :get %>
+        <%= button_to '次の人へ', baton_pass_diary_article_path(@diary, @article), method: :put %>
+      </div>
+  </div>
+</div>
+
