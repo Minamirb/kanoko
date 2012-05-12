@@ -70,7 +70,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.html { redirect_to @article, notice: '日記を次の人にまわしますか？' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -92,8 +92,8 @@ class ArticlesController < ApplicationController
   end
 
   def baton_pass
-    member = Member.find(params[:member_id])
-    member.baton_pass
+    article = Article.find(params[:id])
+    article.member.baton_pass
     redirect_to diaries_path
   end
 end
