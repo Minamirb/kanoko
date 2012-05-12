@@ -32,7 +32,7 @@
 
       <div class="field">
         わたしの日記<br />
-        <%= f.text_area :content, :size => "50x25" %>
+        <%= f.text_area :content, :size => "52x18" %>
       </div>
 
       <div class="field">
@@ -42,7 +42,7 @@
       <div>
         <%= f.label :"絵を書く" %>
         <div>
-          <canvas id="canvas" widht="300px" height="300px" style="border: 1px solid #000000;"></canvas>
+          <canvas id="canvas"></canvas>
           <%= f.hidden_field :picture %>
         </div>
       </div>
