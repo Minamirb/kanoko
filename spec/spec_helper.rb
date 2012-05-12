@@ -16,6 +16,7 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+  config.mock_with :rspec
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -30,3 +31,16 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 end
+
+OmniAuth.config.test_mode = true
+omniauth_options = {
+  "provider"    => "twitter",
+  "uid"         => "3333",
+  "info"        => {
+    :name       => "Pumpkin King",
+    :nickname   => "Jack",
+    :urls       => { :Twitter => "localhost:3000/#twitter" },
+  },
+  "credentials" => { :token => "fafiafea988f3jr38r93u9r" },
+}
+OmniAuth.config.add_mock(:twitter, omniauth_options)
