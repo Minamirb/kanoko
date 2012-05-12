@@ -8,7 +8,6 @@
   </head>
   <body>
     <% if current_user %>
-      <%= current_user.name %>
       <%= current_user.screen_name %>
       <%= link_to 'Log out', logout_path %>
     <% else %>

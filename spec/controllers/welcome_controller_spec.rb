@@ -15,7 +15,8 @@ describe WelcomeController do
 
     describe "with login" do
       before(:each) do
-        @user = FactoryGirl.create(:user, provider: "twitter", uid: "3333", name: "Jack")
+        @user = FactoryGirl.create(:user)
+        @account = FactoryGirl.create(:account, user_id: @user.id, provider: "twitter", uid: "3333", name: "Jack")
         session[:user_id] = @user.id
       end
 
