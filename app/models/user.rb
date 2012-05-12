@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
         provider: auth['provider'],
         uid:      auth['uid'],
         name:     (auth['info']['name'] rescue ''),
+        secret:   (auth['credentials']['secret'] rescue ''),
         token:    (auth['credentials']['token'] rescue ''),
       }
       user.accounts.build(attrs)
