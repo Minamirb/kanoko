@@ -12,7 +12,7 @@
       <% if current_user %>
         <%= link_to '日記一覧ページへ', diaries_path, id: "button_area" %>
       <% else %>
-        <%= link_to '日記にログインする', '/auth/twitter', id: "button_area" %>
+        <%= link_to '日記にログインする', '/auth/twitter?x_auth_access_type=write', id: "button_area" %>
       <% end %>
     </div>
   </body>
