@@ -16,8 +16,5 @@
 
 /vendor
 
-<<<<<<< HEAD
-/app/assets/images/*
-=======
 /config/twitter.yml
->>>>>>> e5c4025638cabc524164f3a043fb84dc12d03ee1
+
