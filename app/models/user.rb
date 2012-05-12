@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
       attrs = {
         provider: auth['provider'],
         uid:      auth['uid'],
-        name:     auth['info']['name'],
+        name:     (auth['info']['name'] rescue ''),
+        token:    (auth['credentials']['token'] rescue ''),
       }
       user.accounts.build(attrs)
       user.name = auth['info']['nickname']
