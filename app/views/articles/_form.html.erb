@@ -3,13 +3,15 @@
 
 <div id="note_area">
   <div id="pre_content">
-    <p>
-      <b><%= @last_article.updated_at %></b>
-      <b><%= @last_article.member.user.name %></b>
-    </p>
-    <p>
-      <%= @last_article.content %>
-    </p>
+    <% if @last_article %>
+      <p>
+        <b><%= @last_article.updated_at %></b>
+        <b><%= @last_article.member.user.name %></b>
+      </p>
+      <p>
+        <%= @last_article.content %>
+      </p>
+    <% end %>
   </div>
 
   <div id="ring_area">
