@@ -21,7 +21,7 @@ describe SessionsController do
           attrs = {
             provider: twitter_user["provider"],
             uid:      twitter_user["uid"],
-            name:     twitter_user["info"][:name],
+            name:     twitter_user["info"]["name"],
           }
           user = FactoryGirl.create(:user, attrs)
           request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter]
