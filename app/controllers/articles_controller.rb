@@ -26,12 +26,7 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @member = Member.find(params[:member_id])
-    prev_member = Member.where('diary_id = ? and sort < ?', @member.diary.id, @member.sort).order('sort').first
-    if prev_member.nil?
-      prev_member = Member.where('diary_id = ?', @member.diary.id).order('sort').last
-    end
-
-    @last_article = prev_member.articles.order('updated_at').last
+    @last_article = @member.prev_member.articles.order('updated_at').last
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,6 +37,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
+    @member = Member.find(params[:member_id])
+    @last_article = @member.prev_member.articles.order('updated_at').last
   end
 
   # POST /articles

@@ -7,7 +7,7 @@ Kanoko::Application.routes.draw do
   resources :articles
   resources :diaries
   resources :members do
-    resource :articles
+    resources :articles
   end
 
   match "/auth/:provider/callback" => "sessions#callback"

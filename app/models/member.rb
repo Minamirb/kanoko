@@ -13,4 +13,9 @@ class Member < ActiveRecord::Base
     next_user_id = next_member.user.id
     Member.where('diary_id = ?', diary.id).update_all(baton: next_user_id)
   end
+
+  def prev_member
+    prev = Member.where('diary_id = ? and sort < ?', diary.id, sort).order('sort').first
+    prev ||= Member.where('diary_id = ?', diary.id).order('sort').last
+  end
 end

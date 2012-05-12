@@ -1,8 +1,8 @@
-<h1><%= @current_user.name %>の日記一覧</h1>
-
+<h1><%= current_user.name %>の日記一覧</h1>
+<%= current_user.to_yaml %>
 <table>
 <% @diaries.each do |diary| %>
-<% member = diary.members.find_by_user_id(@current_user.id) %>
+<% member = diary.members.find_by_user_id(current_user.id) %>
   <tr>
     <td><%= diary.title %></td>
     <td>
