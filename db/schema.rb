@@ -40,15 +40,6 @@ ActiveRecord::Schema.define(:version => 20120512075657) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
-    t.string   "screen_name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "members", :force => true do |t|
     t.integer  "user_id"
     t.integer  "diary_id"
@@ -62,9 +53,12 @@ ActiveRecord::Schema.define(:version => 20120512075657) do
   add_index "members", ["user_id"], :name => "index_members_on_user_id"
 
   create_table "users", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "screen_name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
