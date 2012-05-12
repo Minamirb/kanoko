@@ -1,9 +1,12 @@
 Kanoko::Application.routes.draw do
+
   get "welcome/index"
 
   resources :articles
-
   resources :diaries
+  resources :members do
+    resource :articles
+  end
 
   match "/auth/:provider/callback" => "sessions#callback"
   match "/logout" => "sessions#destroy", :as => :logout

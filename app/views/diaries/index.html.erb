@@ -1,25 +1,18 @@
-<h1>Listing diaries</h1>
+<h1>日記の一覧</h1>
 
+<% current_user_id = 1 %>
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Deliver</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @diaries.each do |diary| %>
+<%= member_id = diary.members.find_by_user_id(current_user_id) %>
   <tr>
     <td><%= diary.title %></td>
-    <td><%= diary.deliver %></td>
-    <td><%= link_to 'Show', diary %></td>
-    <td><%= link_to 'Edit', edit_diary_path(diary) %></td>
-    <td><%= link_to 'Destroy', diary, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to '日記を見る', new_member_articles_path(2) %></td>
+    <td><%= link_to 'メンバー追加', edit_diary_path(diary) %></td>
+    <td><%= link_to '日記を止める', diary, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Diary', new_diary_path %>
+<%= link_to '新しい日記', new_diary_path %>

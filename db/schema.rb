@@ -49,4 +49,16 @@ ActiveRecord::Schema.define(:version => 20120512075657) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "members", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "diary_id"
+    t.integer  "sort"
+    t.integer  "baton"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "members", ["diary_id"], :name => "index_members_on_diary_id"
+  add_index "members", ["user_id"], :name => "index_members_on_user_id"
+
 end
