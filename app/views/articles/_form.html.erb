@@ -1,6 +1,7 @@
-<%= image_tag "tab_pink.png", id: "pre_tag" %>
+<% if prev_article = @last_article.prev %>
+  <%= link_to image_tag("tab_pink.png", id: "pre_tag"), new_diary_article_path(@diary, article_id: prev_article.to_param) %>
+<% end %>
 <%= image_tag "tab_pink2.png", id: "next_tag" %>
-<%= link_to image_tag("tab_blue.png"), diaries_path, id: "back_tag" %>
 
 <div id="note_area">
   <div id="pre_content">
@@ -51,6 +52,9 @@
           <canvas id="canvas" width="370" height="130" style="border:1px solid #000000"></canvas>
           <%= f.hidden_field :picture %>
           <%= button_to_function "絵を消す", "javascript:void(0)", :id => "clear_picture" %>
+          <%= javascript_tag do %>
+            window.article_picture = '<%= j @article.picture %>';
+          <% end %>
         </div>
       </div>
 

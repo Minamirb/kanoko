@@ -10,6 +10,12 @@ jQuery ($) ->
   context.strokeStyle = "rgba(0, 0, 0, 0.5)"
   $("#clear_picture").on "click", () -> context.clearRect(0, 0, canvas.width, canvas.height)
 
+  if article_picture
+    picture = new Image()
+    picture.src = article_picture
+    picture.onload = ->
+      context.drawImage(picture, 0, 0)
+
   point = (e) ->
     rect = e.target.getBoundingClientRect()
     [e.clientX - rect.left, e.clientY - rect.top]

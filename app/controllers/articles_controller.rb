@@ -30,7 +30,11 @@ class ArticlesController < ApplicationController
   # GET /articles/new.json
   def new
     @article = Article.new
-    @last_article = @diary.articles.order('updated_at').last
+    @last_article = if id = params[:article_id]
+                      Article.find(id)
+                    else
+                      @diary.articles.order('updated_at').last
+                    end
 
     respond_to do |format|
       format.html # new.html.erb
