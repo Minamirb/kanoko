@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20120512075657) do
     t.integer  "member_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.binary   "picture"
   end
 
   add_index "articles", ["member_id"], :name => "index_articles_on_member_id"
