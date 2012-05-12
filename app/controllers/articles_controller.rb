@@ -91,8 +91,7 @@ class ArticlesController < ApplicationController
   end
 
   def baton_pass
-    article = Article.find(params[:id])
-    article.member.baton_pass
+    @diary.baton_pass
     redirect_to diaries_path
   end
 end

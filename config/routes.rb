@@ -4,9 +4,7 @@ Kanoko::Application.routes.draw do
 
   resources :diaries do
     resources :articles do
-      member do
-        put :baton_pass
-      end
+      put :baton_pass
     end
   end
 
