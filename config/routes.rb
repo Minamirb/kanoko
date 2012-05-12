@@ -10,6 +10,9 @@ Kanoko::Application.routes.draw do
       put :baton_pass
       get :picture
     end
+    resources :members, :only => [:create] do
+      get :confirm
+    end
   end
 
   resources :members
