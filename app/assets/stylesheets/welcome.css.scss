@@ -1,3 +1,24 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+    margin-top: 100px;
+    background: url(back.png);
+    text-align: center;
+}
+
+#logo {
+    height: 250px;
+    background: url(title.png) no-repeat center;
+    background-size: 35%;
+}
+
+#login_area {
+    background: -moz-linear-gradient(top, rgba(30,100,50,0.3), #fff);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(30,100,50,0.3)), to(#fff));
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+a {
+  color: #222;
+}

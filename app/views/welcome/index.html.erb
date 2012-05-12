@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Omniauth</title>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
+    <title>交換日記</title>
+    <%= stylesheet_link_tag "welcome" %>
   </head>
   <body>
-    <% if current_user %>
-      <%= current_user.name %>
-      <%= current_user.screen_name %>
-      <%= link_to 'Log out', logout_path %>
-    <% else %>
-      <%= link_to 'Log in', '/auth/twitter' %>
-    <% end %>
-    <%= yield %>
-
+    <div id="header">
+      <div id="logo">
+        &nbsp;
+      </div>
+      <%= link_to '日記をはじめる', '/auth/twitter', id: "login_area" %>
+    </div>
   </body>
 </html>
