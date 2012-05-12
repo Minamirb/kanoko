@@ -15,10 +15,12 @@
           <td><b><% if diary.articles.present? %><%= diary.articles.first.created_at.strftime("%Y年%m月%d日") %><% else %>(まだ誰も書いていません)<% end %></b></td>
         </tr>
       </table>
+      <div class="diary_edit_link">
+        <%= link_to 'タイトルの編集', edit_diary_path(diary) %>
+      </div>
     </div>
     <div class="detail">
       【交換メンバー】
-      <%#= link_to 'メンバー追加', edit_diary_path(diary) %>
       <br />
       <% diary.users.each do |user| %>
         <table>
@@ -33,3 +35,4 @@
   </div>
   <br />
 <% end %>
+<%= link_to '今日はおしまい', logout_path %>
