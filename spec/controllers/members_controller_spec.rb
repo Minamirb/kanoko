@@ -24,7 +24,7 @@ describe MembersController do
 
   describe "GET 'confirm'" do
     it "returns http success" do
-      get 'confirm'
+      get 'confirm', { diary_id: @diary.id }
       response.should be_success
     end
   end

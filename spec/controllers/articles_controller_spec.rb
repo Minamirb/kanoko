@@ -95,7 +95,7 @@ describe ArticlesController do
 
       it "redirects to the created article" do
         post :create, {diary_id: @diary.id, article: valid_attributes}
-        response.should redirect_to(diary_article_path(@diary, Article.last))
+        response.should redirect_to(edit_diary_article_path(@diary, Article.last))
       end
     end
 
@@ -135,7 +135,7 @@ describe ArticlesController do
 
       it "redirects to the article" do
         put :update, {diary_id: @diary.id, id: @article.to_param, article: valid_attributes}
-        response.should redirect_to(diary_article_url(@diary, @article))
+        response.should redirect_to(edit_diary_article_url(@diary, @article))
       end
     end
 
