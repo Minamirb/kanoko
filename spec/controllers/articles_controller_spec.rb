@@ -63,20 +63,19 @@ describe ArticlesController do
     end
   end
 
-  # describe "GET new" do
-  #   it "assigns a new article as @article" do
-  #     get :new
-  #     assigns(:article).should be_a_new(Article)
-  #   end
-  # end
+  describe "GET new" do
+    it "assigns a new article as @article" do
+      get :new, {diary_id: @diary.id}
+      assigns(:article).should be_a_new(Article)
+    end
+  end
 
-  # describe "GET edit" do
-  #   it "assigns the requested article as @article" do
-  #     article = Article.create! valid_attributes
-  #     get :edit, {:id => article.to_param}
-  #     assigns(:article).should eq(article)
-  #   end
-  # end
+  describe "GET edit" do
+    it "assigns the requested article as @article" do
+      get :edit, {diary_id: @diary.id, id: @article.to_param}
+      assigns(:article).should eq(@article)
+    end
+  end
 
   # describe "POST create" do
   #   describe "with valid params" do
