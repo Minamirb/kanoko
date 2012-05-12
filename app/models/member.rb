@@ -29,7 +29,7 @@ class Member < ActiveRecord::Base
     begin
       twitter.update("@#{to.screen_name} 交換日記の招待がありました #{url}")
     rescue Rubytter::APIError => e
-      Rails.logger.warn(e)
+      Rails.logger.info(e)
     end
   end
 end
