@@ -5,6 +5,13 @@ class DevelopmentController < ApplicationController
   #   http://localhost:3000/development/login?name=[name]
   # Create new user with parameters:
   #   http://localhost:3000/development/login?name=[name]&uid=[uid]&provider=[provider]
+  #
+  # ex) Create and login with new user:
+  #   http://localhost:3000/development/login
+  # ex) Create and login with new user named "jack"
+  #   http://localhost:3000/development/login?name=jack
+  # ex) Login with the user named "jack"
+  #   http://localhost:3000/development/login?name=jack
   def login
     unless ["development", "test"].include?(Rails.env)
       redirect_to root_url
