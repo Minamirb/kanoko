@@ -7,4 +7,8 @@ class Article < ActiveRecord::Base
   def prev
     Article.where("created_at < ? AND diary_id = ?", created_at, diary_id).order("created_at DESC").first
   end
+
+  def next
+    Article.where("created_at > ? AND diary_id = ?", created_at, diary_id).order("created_at").first
+  end
 end
