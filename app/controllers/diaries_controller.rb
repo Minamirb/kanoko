@@ -47,7 +47,7 @@ class DiariesController < ApplicationController
 
     respond_to do |format|
       if @diary.save
-        format.html { redirect_to @diary, notice: 'Diary was successfully created.' }
+        format.html { redirect_to diaries_path, notice: 'Diary was successfully created.' }
         format.json { render json: @diary, status: :created, location: @diary }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class DiariesController < ApplicationController
 
     respond_to do |format|
       if @diary.update_attributes(params[:diary])
-        format.html { redirect_to @diary, notice: 'Diary was successfully updated.' }
+        format.html { redirect_to diaries_path, notice: 'Diary was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
