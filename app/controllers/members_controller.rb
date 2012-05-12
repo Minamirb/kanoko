@@ -30,6 +30,7 @@ class MembersController < ApplicationController
     if request.put?
       @member.confirm = true
       @member.confirm_hash = nil
+      @member.user.update_attributes(:name => @member.user.accounts.first.screen_name)
       @member.save!
       redirect_to diaries_path, :notice => "#{@diary.title} に参加しました"
     end
