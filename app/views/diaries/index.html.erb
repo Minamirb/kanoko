@@ -16,7 +16,7 @@
           <th>始めた日</th>
         </tr>
         <tr>
-          <td><b><% if diary.articles.present? %><%= diary.articles.first.created_at.strftime("%Y年%m月%d日") %><% else %>(まだ誰も書いていません)<% end %></b></td>
+          <td><b><% if diary.articles.present? %><%= diary.articles.first.updated_at.strftime("%Y年%m月%d日") %><% else %>(まだ誰も書いていません)<% end %></b></td>
         </tr>
       </table>
       <div class="diary_edit_link">
@@ -34,8 +34,9 @@
           </tr>
         </table>
       <% end %>
+      <br />
       <%= form_for([diary, diary.members.new]) do |f| %>
-        [新メンバー招待]
+        [新メンバー招待](twitterの場合は@なしのIDを半角入力)<br />
         <%= f.select :provider, [:twitter, :twitter] %>
         <%= f.text_field :account_screen_name, :size => 24 %>
         <%= f.submit "招待する" %>

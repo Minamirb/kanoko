@@ -45,7 +45,11 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = @diary.articles.find(params[:id])
-    @last_article = @diary.articles.order('updated_at')[-2]
+    @last_article = if id = params[:article_id]
+                      Article.find(id)
+                    else
+                      @diary.articles.order('updated_at')[-2]
+                    end
   end
 
   # POST /articles
