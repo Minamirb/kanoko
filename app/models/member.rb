@@ -19,17 +19,16 @@ class Member < ActiveRecord::Base
   end
 
   def invite_notice(from)
-    consumer = Rubytter::OAuth.new(TWITTER_OAUTH["CONSUMER_KEY"], TWITTER_OAUTH["CONSUMER_SECRET"]).create_consumer
-
     from = from.accounts.find_by_provider("twitter")
     to = user.accounts.find_by_provider("twitter")
-    access_token = OAuth::AccessToken.new(consumer, from.token, from.secret)
-    twitter = OAuthRubytter.new(access_token)
-    url = diary_member_confirm_url(diary, self)
-    begin
-      twitter.update("@#{to.screen_name} 交換日記の招待がありました #{url}")
-    rescue Rubytter::APIError => e
-      Rails.logger.warn(e)
+    Twitter.configure do |config|
+      config.consumer_key = TWITTER_OAUTH["CONSUMER_KEY"]
+      config.consumer_secret = TWITTER_OAUTH["CONSUMER_SECRET"]
+      config.oauth_token = from.token
+      config.oauth_token_secret = from.secret
     end
+    url = diary_member_confirm_url(diary, self)
+
+    Twitter.update("@#{to.screen_name} 交換日記の招待がありました #{url}")
   end
 end
