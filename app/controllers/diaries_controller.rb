@@ -1,9 +1,9 @@
 class DiariesController < ApplicationController
+  before_filter :login_required
+
   # GET /diaries
   # GET /diaries.json
   def index
-    @current_user = User.first
-
     @diaries = @current_user.members.map(&:diary)
 
     respond_to do |format|
