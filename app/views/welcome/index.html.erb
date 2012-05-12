@@ -10,7 +10,7 @@
         &nbsp;
       </div>
       <% if current_user %>
-        <%= link_to '日記一覧', diaries_path, id: "login_area" %>
+        <%= link_to '日記一覧', diaries_path, id: "_area" %>
       <% else %>
         <%= link_to '日記をはじめる', '/auth/twitter', id: "login_area" %>
       <% end %>

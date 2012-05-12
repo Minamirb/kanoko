@@ -2,14 +2,12 @@ Kanoko::Application.routes.draw do
 
   get "development/login" if ["development", "test"].include?(Rails.env)
 
-  resources :articles do
-    member do
-      put :baton_pass
-    end
-  end
-
   resources :diaries do
-    resources :articles
+    resources :articles do
+      member do
+        put :baton_pass
+      end
+    end
   end
 
   resources :members
