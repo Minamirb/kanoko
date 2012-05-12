@@ -1,7 +1,14 @@
 Kanoko::Application.routes.draw do
+  get "welcome/index"
+
   resources :articles
 
   resources :diaries
+
+  match "/auth/:provider/callback" => "sessions#callback"
+  match "/logout" => "sessions#destroy", :as => :logout
+
+  root :to => 'welcome#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

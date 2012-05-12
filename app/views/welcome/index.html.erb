@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Omniauth</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <% if current_user %>
+      <%= current_user.name %>
+      <%= current_user.screen_name %>
+      <%= link_to 'Log out', logout_path %>
+    <% else %>
+      <%= link_to 'Log in', '/auth/twitter' %>
+    <% end %>
+    <%= yield %>
+
+  </body>
+</html>
