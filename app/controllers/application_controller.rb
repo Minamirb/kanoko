@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_diary
+    @diary = Diary.find(params[:diary_id])
+  end
+
   helper_method :current_user
 
   private

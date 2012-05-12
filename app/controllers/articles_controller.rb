@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 class ArticlesController < ApplicationController
+  before_filter :login_required
+  before_filter :set_diary
+
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = @diary.articles.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +17,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @article = Article.find(params[:id])
+    @article = @diary.articles.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,9 +29,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.json
   def new
     @article = Article.new
-    @diary = Diary.find(params[:diary_id])
-    @member = Member.find_by_user_id_and_diary_id(current_user.id, @diary.id)
-    @last_article = @member.prev_member.articles.order('updated_at').last
+    @last_article = @diary.articles.order('updated_at').last
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,22 +39,20 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
-    @diary = Diary.find(params[:diary_id])
-    @member = Member.find_by_user_id_and_diary_id(current_user.id, @diary.id)
-    @last_article = @member.prev_member.articles.order('updated_at').last
+    @article = @diary.articles.find(params[:id])
+    @last_article = @diary.articles.order('updated_at').last
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = Article.new(params[:article])
-    diary = Diary.find(params[:diary_id])
-    member = Member.find_by_user_id_and_diary_id(current_user.id, diary.id)
+    @article.user = current_user
+    @article.diary = @diary
+    @article.member = @diary.members.find_by_user_id(current_user.id)
 
     respond_to do |format|
       if @article.save
-        member.articles << @article
         format.html { redirect_to diary_article_path(@article), notice: '日記を次の人にまわしますか？' }
         format.json { render json: @article, status: :created, location: @article }
       else
@@ -66,7 +65,7 @@ class ArticlesController < ApplicationController
   # PUT /articles/1
   # PUT /articles/1.json
   def update
-    @article = Article.find(params[:id])
+    @article = @diary.articles.find(params[:id])
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
@@ -82,7 +81,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @article = Article.find(params[:id])
+    @article = @diary.articles.find(params[:id])
     @article.destroy
 
     respond_to do |format|
