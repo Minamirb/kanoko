@@ -1,6 +1,10 @@
 jQuery ($) ->
   return unless canvas = $("#canvas").get(0)
-  console.log(canvas)
+  form = if location.pathname.match(/new$/) then $("#new_article") else $("#edit_article")
+
+  form.on "submit", () ->
+    $("#article_picture").val(canvas.toDataURL())
+
   width = 1
   context = canvas.getContext("2d")
   context.strokeStyle = "rgba(0, 0, 0, 0.5)"
@@ -31,5 +35,3 @@ jQuery ($) ->
   canvas.onmouseout = (e) ->
     draw(e)
     beginPoint = false
-
-
