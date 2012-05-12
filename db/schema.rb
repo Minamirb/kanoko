@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512145123) do
+ActiveRecord::Schema.define(:version => 20120512162129) do
 
   create_table "accounts", :force => true do |t|
     t.string   "provider"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120512145123) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.string   "token"
   end
 
   create_table "articles", :force => true do |t|
@@ -40,13 +41,13 @@ ActiveRecord::Schema.define(:version => 20120512145123) do
     t.boolean  "deliver"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "baton"
   end
 
   create_table "members", :force => true do |t|
     t.integer  "user_id"
     t.integer  "diary_id"
     t.integer  "sort"
-    t.integer  "baton"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
