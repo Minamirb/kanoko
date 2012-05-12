@@ -1,6 +1,6 @@
 jQuery ($) ->
   return unless canvas = $("#canvas").get(0)
-  form = if location.pathname.match(/new$/) then $("#new_article") else $("#edit_article")
+  form = if location.pathname.match(/new$/) then $(".new_article") else $(".edit_article")
 
   form.on "submit", () ->
     $("#article_picture").val(canvas.toDataURL())
