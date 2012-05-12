@@ -18,12 +18,15 @@ describe SessionsController do
       describe "login with existing valid account" do
         before(:each) do
           twitter_user = OmniAuth.config.mock_auth[:twitter]
+          user = FactoryGirl.create(:user)
           attrs = {
+            user_id:  user.id,
             provider: twitter_user["provider"],
             uid:      twitter_user["uid"],
             name:     twitter_user["info"]["name"],
           }
-          user = FactoryGirl.create(:user, attrs)
+          account = FactoryGirl.create(:account, attrs)
+
           request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter]
         end
 
