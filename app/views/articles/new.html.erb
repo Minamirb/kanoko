@@ -1,15 +1,9 @@
 <h1>New article</h1>
 
 <div>
-  ○○月××日
+  <%= @last_article.updated_at %>
   <br />
-  <%= simple_format <<CONTEXT
-  直前の日記の内容直前の日記の内容直前の日記の内容直前の日記の内容
-  直前の日記の内容直前の日記の内容直前の日記の内容直前の日記の内容
-  直前の日記の内容直前の日記の内容直前の日記の内容直前の日記の内容
-  直前の日記の内容直前の日記の内容直前の日記の内容直前の日記の内容
-CONTEXT
-  %>
+  <%= @last_article.content %>
 </div>
 
 <div>
