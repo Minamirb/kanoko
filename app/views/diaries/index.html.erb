@@ -16,7 +16,7 @@
       <% diary.users.each do |user| %>
         <table>
           <tr>
-            <th width="20px"><% if @diary.baton == user.id %><%= image_tag("check_g.png", size: "30x30") %><% else %>&nbsp;&nbsp;&nbsp;<% end %></th>
+            <th width="20px"><% if diary.baton == user.id %><%= image_tag("check_g.png", size: "30x30") %><% else %>&nbsp;&nbsp;&nbsp;<% end %></th>
             <th><%= user.name %></th>
           </tr>
         </table>
