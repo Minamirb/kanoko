@@ -30,7 +30,7 @@ describe User do
 
   context "An existing user" do
     before(:each) do
-      user = FactoryGirl.create(:user, screen_name: 'Dummy Nickname')
+      user = FactoryGirl.create(:user, name: 'Dummy Nickname')
       account = FactoryGirl.create(:account, user_id: user.id, provider: 'twitter', uid: '1111')
     end
 

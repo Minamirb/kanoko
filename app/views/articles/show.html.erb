@@ -5,11 +5,5 @@
   <%= @article.content %>
 </p>
 
-<p>
-  <b>Member:</b>
-  <%= @article.member %>
-</p>
-
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Edit', edit_member_article_path(@article.member, @article) %> |
 <%= link_to 'Back', articles_path %>

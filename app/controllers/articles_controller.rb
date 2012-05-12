@@ -25,6 +25,8 @@ class ArticlesController < ApplicationController
   # GET /articles/new.json
   def new
     @article = Article.new
+    @member = Member.find(params[:member_id])
+    @last_article = @member.prev_member.articles.order('updated_at').last
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,15 +37,20 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
+    @member = Member.find(params[:member_id])
+    @last_article = @member.prev_member.articles.order('updated_at').last
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = Article.new(params[:article])
+    member = Member.find(params[:member_id])
 
     respond_to do |format|
       if @article.save
+        member.articles << @article
+        member.baton_pass
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render json: @article, status: :created, location: @article }
       else

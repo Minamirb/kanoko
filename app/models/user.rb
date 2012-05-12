@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :provider, :screen_name, :uid
+  has_many :members
+  has_many :diaries, through: :members
+  attr_accessible :name
 
   has_many :accounts
 
@@ -11,7 +13,7 @@ class User < ActiveRecord::Base
         name:     auth['info']['name'],
       }
       user.accounts.build(attrs)
-      user.screen_name = auth['info']['nickname']
+      user.name = auth['info']['nickname']
     end
   end
 

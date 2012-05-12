@@ -1,8 +1,10 @@
 class DiariesController < ApplicationController
+  before_filter :login_required
+
   # GET /diaries
   # GET /diaries.json
   def index
-    @diaries = Diary.all
+    @diaries = @current_user.diaries
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class DiariesController < ApplicationController
   # GET /diaries/1
   # GET /diaries/1.json
   def show
-    @diary = Diary.find(params[:id])
+    @diary = @current_user.diaries.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,13 +36,14 @@ class DiariesController < ApplicationController
 
   # GET /diaries/1/edit
   def edit
-    @diary = Diary.find(params[:id])
+    @diary = @current_user.diaries.find(params[:id])
   end
 
   # POST /diaries
   # POST /diaries.json
   def create
     @diary = Diary.new(params[:diary])
+    @diary.users << @current_user
 
     respond_to do |format|
       if @diary.save
@@ -56,7 +59,7 @@ class DiariesController < ApplicationController
   # PUT /diaries/1
   # PUT /diaries/1.json
   def update
-    @diary = Diary.find(params[:id])
+    @diary = @current_user.diaries.find(params[:id])
 
     respond_to do |format|
       if @diary.update_attributes(params[:diary])
@@ -72,7 +75,7 @@ class DiariesController < ApplicationController
   # DELETE /diaries/1
   # DELETE /diaries/1.json
   def destroy
-    @diary = Diary.find(params[:id])
+    @diary = @current_user.diaries.find(params[:id])
     @diary.destroy
 
     respond_to do |format|

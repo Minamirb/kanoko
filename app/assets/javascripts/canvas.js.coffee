@@ -8,6 +8,7 @@ jQuery ($) ->
   width = 1
   context = canvas.getContext("2d")
   context.strokeStyle = "rgba(0, 0, 0, 0.5)"
+  $("#clear_picture").on "click", () -> context.clearRect(0, 0, canvas.width, canvas.height)
 
   point = (e) ->
     rect = e.target.getBoundingClientRect()

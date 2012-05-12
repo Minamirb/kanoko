@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      article: ページ
+      diary: 日記
+
+    attributes:
+      article:
+        content: 内容
+        member: メンバー
+
+      diary:
+        deliver: 回覧
+        title: タイトル

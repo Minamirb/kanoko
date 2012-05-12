@@ -1,9 +1,14 @@
 Kanoko::Application.routes.draw do
+
+  get "development/login" if ["development", "test"].include?(Rails.env)
+
   get "welcome/index"
 
   resources :articles
-
   resources :diaries
+  resources :members do
+    resources :articles
+  end
 
   match "/auth/:provider/callback" => "sessions#callback"
   match "/logout" => "sessions#destroy", :as => :logout
